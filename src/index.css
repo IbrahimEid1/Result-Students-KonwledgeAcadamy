@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #f7f8fc;
+    --surface: #ffffff;
+    --border: #e8ebf4;
+    --text-primary: #12153d;
+    --text-secondary: #5b6289;
+    --brand: #6272f1;
+  }
+  .dark {
+    --bg: #0e1120;
+    --surface: #161928;
+    --border: #252a45;
+    --text-primary: #eef0fb;
+    --text-secondary: #8b91c4;
+    --brand: #818cf8;
+  }
+  body {
+    @apply bg-[var(--bg)] text-[var(--text-primary)] font-body antialiased;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  * { @apply border-[var(--border)]; }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-600 to-purple-500 bg-clip-text text-transparent;
+  }
+  .dark .text-gradient {
+    @apply from-brand-400 to-purple-400;
+  }
+  .card {
+    @apply bg-[var(--surface)] rounded-2xl shadow-card border border-[var(--border)];
+  }
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-brand-200 rounded-full; }
+.dark ::-webkit-scrollbar-thumb { @apply bg-brand-800; }
+
+/* Circular progress */
+.progress-ring { transform: rotate(-90deg); }
+.progress-ring__circle {
+  transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
